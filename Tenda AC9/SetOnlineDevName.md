@@ -15,7 +15,7 @@ In the sub_C5250 function, it first checks if the incoming parameter is null, an
 ```py
 POST /goform/SetOnlineDevName HTTP/1.1
 Host: 192.168.0.1
-Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.140 Safari/537.36
 Cookie: password=452b97084f53fd461f33687a27a21f4dpxatgb
 
