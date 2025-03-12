@@ -8,8 +8,6 @@ There is a stack overflow vulnerability in the formWifiBasicSet function in Tend
 
 ![img](./img/WifiBasicSet1.png)
 
-The sub_7345C method obtains the wanMTU parameter and stores it to nptr using the strcpy function. The strcpy function does not check the size of the target buffer when processing the wanMTU parameter. If the data being copied exceeds the capacity of the buffer, a buffer overflow may occur. Attackers can easily perform denial-of-service attacks or remote code execution using well-designed overflow data.
-
 ![img](./img/WifiBasicSet2.png)
 
 ## Poc
