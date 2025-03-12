@@ -2,7 +2,7 @@
 ## Affected Version
 Tenda AC9 V1.0 V15.03.05.14_multi
 ## Vulnerability Description
-In Tenda ac9 v1.0 routers with firmware version V15.03.05.14_multi, the wanMTU parameter of route /goform/SetSambaCfg has a Command Injection Vulnerability, which may lead to remote arbitrary code execution.
+In Tenda ac9 v1.0 routers with firmware version V15.03.05.14_multi, route /goform/SetSambaCfg has a Command Injection Vulnerability, which may lead to remote arbitrary code execution.
 ## Vulnerability Detail
 In the /goform/SetSambaCfg back-end handler formSetSamba, the HTTP POST request parameters action and usbName are obtained by the function sub_2B9D4. When the content of the parameter "action" is "del", the parameter "usbName" is concatenated into doSystemCmd with a format string and then executed. An attacker can construct malicious parameters "action" and "usbName" to enable remote code execution.
 
