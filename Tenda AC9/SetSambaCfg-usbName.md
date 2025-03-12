@@ -1,4 +1,4 @@
-# Tenda AC9 V1.0 V15.03.05.14_multi stack overflow vulnerability
+# Tenda AC9 V1.0 V15.03.05.14_multi Command Injection Vulnerability
 ## Affected Version
 Tenda AC9 V1.0 V15.03.05.14_multi
 ## Vulnerability Description
