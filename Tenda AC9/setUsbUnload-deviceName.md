@@ -4,7 +4,7 @@ Tenda AC9 V1.0 V15.03.05.14_multi
 ## Vulnerability Description
 In Tenda ac9 v1.0 routers with firmware version V15.03.05.14_multi, the deviceName parameter of route /goform/setUsbUnload has a Command Injection Vulnerability, which may lead to remote arbitrary code execution.
 ## Vulnerability Detail
-The v2 returned by the sub_2B9FC function is passed to doSystemCmd as an argument, where v2 is the deviceName obtained from the request. doSystemCmd executes the command "cfm post netctrl 51? op=3,string_info=<v2>", where <v2> is the deviceName obtained from the request, that is, the data provided by the user, and v2 is the deviceName passed in from the outside. If the deviceName is not strictly verified, an attacker can use it to insert malicious commands.
+The v2 returned by the sub_2B9FC function is passed to doSystemCmd as an argument, where v2 is the deviceName obtained from the request. doSystemCmd executes the command "cfm post netctrl 51? op=3,string_info=v2", where v2 is the deviceName obtained from the request, that is, the data provided by the user, and v2 is the deviceName passed in from the outside. If the deviceName is not strictly verified, an attacker can use it to insert malicious commands.
 deviceName=";  When rm -rf /", the generated command becomes: "cfm post netctrl 51? op=3,string_info=;  rm -rf /", which causes the rm -rf/command to be executed, causing serious system damage.
 
 ![img](./img/setUsbUnload.png)
