@@ -5,12 +5,12 @@ Tenda AC9 V1.0 V15.03.05.14_multi
 In Tenda ac9 v1.0 routers with firmware version V15.03.05.14_multi, the vlanId parameter of route /goform/SetIPTVCfg has a Command Injection Vulnerability, which can lead to remote arbitrary code execution.
 ## Vulnerability Detail
 There is a stack overflow vulnerability in the formSetIptv function in Tenda AC9 V1.0 firmware V15.03.05.14_multi.This function retrieves the vlanId parameter from a POST request.
-sub_AFE44
-The strcpy function does not check the size of the target buffer when processing the security parameter. If the copied data exceeds the capacity of the buffer, a buffer overflow may occur. An attacker can easily execute a denial-of-service attack or remote code execution using carefully crafted overflow data.
 
 ![img](./img/SetIPTVCfg1.png)
 
 ![img](./img/SetIPTVCfg2.png)
+
+The sub_AFE44 function and the sub_B0030 function, when processing the vlanId parameter, are concatenated to the format string in doSystemCmd and then executed. An attacker can construct the malicious parameter "vlanId" to enable remote code execution.
 
 ![img](./img/SetIPTVCfg3.png)
 
