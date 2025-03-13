@@ -4,7 +4,7 @@ Tenda AC9 V1.0 V15.03.05.14_multi
 ## Vulnerability Description
 In Tenda ac9 v1.0 routers with firmware version V15.03.05.14_multi, the time parameter of route /goform/PowerSaveSet has a stack overflow vulnerability, which can lead to remote arbitrary code execution.
 ## Vulnerability Detail
-There is a stack overflow vulnerability in the setSmartPowerManagement function in Tenda AC9 V1.0 firmware V15.03.05.14_multi.This function accepts the time parameter from a POST request by variable s.However, since the user has control over the input of time, and sscanf() simply parses the data in the format specified by format and stores it directly into the target variable，the statement "sscanf(v24, "%[^:]:%[^-]-%[^:]:%s", &v20, &v18, &v16, &v14);  " may leads to a buffer overflow.  The user-supplied time can exceed the capacity of the  v6  array, thus triggering this security vulnerability.
+There is a stack overflow vulnerability in the setSmartPowerManagement function in Tenda AC9 V1.0 firmware V15.03.05.14_multi.This function accepts the time parameter from a POST request by variable v24.However, since the user has control over the input of time, and sscanf() simply parses the data in the format specified by format and stores it directly into the target variable，the statement "sscanf(v24, "%[^:]:%[^-]-%[^:]:%s", &v20, &v18, &v16, &v14);  " may leads to a buffer overflow.  The user-supplied time can exceed the capacity of the  v6  array, thus triggering this security vulnerability.
 
 ![img](./img/PowerSaveSet.png)
 
