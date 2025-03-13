@@ -2,9 +2,9 @@
 ## Affected Version
 Tenda AC9 V1.0 V15.03.05.14_multi
 ## Vulnerability Description
-In Tenda ac9 v1.0 routers with firmware version V15.03.05.14_multi, the security parameter of route /goform/SetFirewallCfg has a stack overflow vulnerability, which can lead to remote arbitrary code execution.
+In Tenda ac9 v1.0 routers with firmware version V15.03.05.14_multi, the firewallEn parameter of route /goform/SetFirewallCfg has a stack overflow vulnerability, which can lead to remote arbitrary code execution.
 ## Vulnerability Detail
-There is a stack overflow vulnerability in the formSetFirewallCfgfunction in Tenda AC9 V1.0 firmware V15.03.05.14_multi.   This function retrieves the firewallEn from a POST request.   The strcpy function does not check the size of the target buffer when processing the firewallEn.    If the copied data exceeds the capacity of the buffer, a buffer overflow may occur.    An attacker can easily execute a denial-of-service attack or remote code execution using carefully crafted overflow data.
+There is a stack overflow vulnerability in the formSetFirewallCfg function in Tenda AC9 V1.0 firmware V15.03.05.14_multi. This function retrieves the firewallEn from a POST request. The strcpy function does not check the size of the target buffer when processing the firewallEn. If the copied data exceeds the capacity of the buffer, a buffer overflow may occur. An attacker can easily execute a denial-of-service attack or remote code execution using carefully crafted overflow data.
 
 ![img](./img/SetFirewallCfg.png)
 
