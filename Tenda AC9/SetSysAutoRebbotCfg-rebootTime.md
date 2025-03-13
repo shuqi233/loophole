@@ -4,7 +4,7 @@ Tenda AC9 V1.0 V15.03.05.14_multi
 ## Vulnerability Description
 In Tenda ac9 v1.0 routers with firmware version V15.03.05.14_multi, the rebootTime parameter of route /goform/SetSysAutoRebbotCfg has a stack overflow vulnerability, which can lead to remote arbitrary code execution.
 ## Vulnerability Detail
-There is a stack overflow vulnerability in the formSetRebootTimer function in Tenda AC9 V1.0 firmware V15.03.05.14_multi.This function retrieves the rebootTime parameter from a POST request.The strcpy function does not check the size of the target buffer when processing the rebootTime parameter. If the copied data exceeds the capacity of the buffer, a buffer overflow may occur. An attacker can easily execute a denial-of-service attack or remote code execution using carefully crafted overflow data.
+There is a stack overflow vulnerability in the formSetRebootTimer function in Tenda AC9 V1.0 firmware V15.03.05.14_multi.This function accepts the rebootTime parameter from a POST request by variable s.However, since the user has control over the input of rebootTime, and sscanf() simply parses the data in the format specified by format and stores it directly into the target variable，the statement "sscanf(param_1,"%d:%d",&v7,&v6);  " may leads to a buffer overflow.  The user-supplied rebootTime can exceed the capacity of the  v6  array, thus triggering this security vulnerability.
 
 ![img](./img/SetSysAutoRebbotCfg.png)
 
