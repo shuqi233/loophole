@@ -1,4 +1,8 @@
 # Tenda AC9 V1.0 V15.03.05.14_multi stack overflow vulnerability
+## Organization
+School of Cybersecurity, Northwestern Polytechnical University  
+## Author
+魏书琪 郭鸿志 尹子硕 张路石 毛伯敏 荀毅杰
 ## Affected Version
 Tenda AC9 V1.0 V15.03.05.14_multi
 ## Vulnerability Description
