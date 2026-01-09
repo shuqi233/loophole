@@ -4,8 +4,9 @@ Tenda AC21 V1.0 V16.03.08.16
 ## Vulnerability Description
 In Tenda ac21 V1.0 routers with firmware version V16.03.08.16, the list parameter of route /goform/SetNetControlList has a stack overflow vulnerability, which can lead to remote arbitrary code execution.
 ## Vulnerability Detail
-There is a stack overflow vulnerability in the formSetQosBand function in Tenda AC21 V1.0 firmware V16.03.08.16. he function formSetQosBand accepts the list parameter from a Web request via the variable Var. This untrusted input is directly passed as an argument to the sub-function set_qosMib_list. Inside the sub-function, the code attempts to parse the input string into segments by using strchr() to find a delimiter (ASCII 10, representing a newline) and then null-terminating that segment.
-However, because the user has full control over the input and there is no validation to ensure the length of the segment preceding the delimiter is within the bounds of the destination buffer, the statement strcpy(v8, s); leads to a stack-based buffer overflow. An attacker can provide a list value containing a segment longer than the 256-byte capacity of the v8 array, thereby overwriting the stack frame and the saved return address. This vulnerability can be exploited to trigger a Denial of Service (DoS) or achieve Remote Code Execution (RCE).
+There is a stack overflow vulnerability in the formSetQosBand function in Tenda AC21 V1.0 firmware V16.03.08.16. The function formSetQosBand receives the list parameter from a Web request via the variable Var. This untrusted input is subsequently passed to the sub-function set_qosMib_list. Inside this sub-function, the code attempts to process the string in segments by searching for a newline character (ASCII 10) using strchr.
+
+However, the function fails to validate the length of these segments against the destination buffer's capacity. Consequently, the statement strcpy(v8, s); leads to a stack-based buffer overflow. Since the local buffer v8 is defined with a fixed size of only 256 bytes, a user-supplied list containing a segment longer than 255 characters will cause strcpy to write past the end of the array. This overwrites the stack frame, including the saved return address, which can be exploited to achieve Remote Code Execution (RCE) or trigger a Denial of Service (DoS).
 ![img](./img/SetQosBand.png)
 
 ## Poc
