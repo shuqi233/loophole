@@ -4,7 +4,7 @@ Tenda AC21 V1.0 V16.03.08.16
 ## Vulnerability Description
 In Tenda ac21 V1.0 routers with firmware version V16.03.08.16, the list parameter of route /goform/SetNetControlList has a stack overflow vulnerability, which can lead to remote arbitrary code execution.
 ## Vulnerability Detail
-There is a stack overflow vulnerability in the formSetQosBand function in Tenda AC21 V1.0 firmware V16.03.08.16. The function formSetQosBand receives the list parameter from a Web request via the variable Var. This untrusted input is subsequently passed to the sub-function set_qosMib_list. Inside this sub-function, the code attempts to process the string in segments by searching for a newline character (ASCII 10) using strchr.
+There is a stack overflow vulnerability in the formSetQosBand function in Tenda AC21 V1.0 firmware V16.03.08.16. The function formSetQosBand receives the list parameter from a Web request via the variable Var. This untrusted input is subsequently passed to the sub-function set_qosMib_list. Inside this sub-function, the strcpy function does not check the size of the target buffer when processing the list parameter.
 
 However, the function fails to validate the length of these segments against the destination buffer's capacity. Consequently, the statement strcpy(v8, s); leads to a stack-based buffer overflow. Since the local buffer v8 is defined with a fixed size of only 256 bytes, a user-supplied list containing a segment longer than 255 characters will cause strcpy to write past the end of the array. This overwrites the stack frame, including the saved return address, which can be exploited to achieve Remote Code Execution (RCE) or trigger a Denial of Service (DoS).
 ![img](./img/SetQosBand.png)
