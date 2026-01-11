@@ -6,7 +6,7 @@ In DLink DIR816 routers with firmware version 1.10CNB05, the dest parameter of r
 ## Vulnerability Detail
 There is a stack overflow vulnerability in the sub_42A240 function in DLink DIR816 firmware 1.10CNB05. The function sub_4569DC, registered to handle the "setSysAdm" web form, accepts the admuser and admpass parameters from a Web request via the variables Var and v4. This untrusted input is directly concatenated into multiple shell command strings without any sanitization or escaping. The call doSystem((int)"sed -e 's/^%s:%s:/' /etc/passwd > /etc/newpw", v2, Var); leads to an OS Command Injection vulnerability. An attacker can provide a specially crafted value for admuser containing shell metacharacters (such as ;, &, |, or `) to execute arbitrary commands with the privileges of the web server. A secondary injection point exists in the call doSystem((int)"chpasswd.sh %s %s", Var, v4);, where the admpass parameter is also used unsafely.
 
-![img](./img/setSysAdm-admuser.png)
+![img](./img/setSysAdm-Admuser.png)
 
 ## Poc
 ```py
