@@ -4,7 +4,7 @@ DLink DIR816 1.10CNB05
 ## Vulnerability Description
 In DLink DIR816 routers with firmware version 1.10CNB05, the datetime parameter of route /goform/form2systime has a command injection vulnerabilities, which can lead to remote arbitrary code execution.
 ## Vulnerability Detail
-There is a stack overflow vulnerability in the sub_4272A4 function in DLink DIR816 firmware 1.10CNB05. The function sub_4272A4, registered to handle the "form2systime.cgi" web form, accepts the datetime parameter from a Web request via the variable Var. This untrusted input is directly concatenated into a shell command string and executed via the statement doSystem((int)"date -s \"%s\"", Var);, leading to an OS Command Injection vulnerability. Although the function performs a basic check to ensure the input contains both a colon (':') and a hyphen ('-'), these characters are easily included in a malicious payload. An attacker can use shell metacharacters (such as ;, &, or |) within the datetime field to execute arbitrary system commands with web server privileges.
+There is a stack overflow vulnerability in the sub_4272A4 function in DLink DIR816 firmware 1.10CNB05. The function sub_4272A4, registered to handle the "form2systime.cgi" web form, accepts the datetime parameter from a Web request via the variable Var. This untrusted input is directly concatenated into a shell command string and executed via the statement doSystem((int)"date -s \"%s\"", Var);, leading to an OS Command Injection vulnerability.  An attacker can use shell metacharacters (such as ;, &, or |) within the datetime field to execute arbitrary system commands with web server privileges.
 ![img](./img/form2systime.png)
 
 ## Poc
